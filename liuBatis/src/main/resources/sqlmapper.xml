@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--namespace先随意写一个-->
+<mapper namespace="car">
+    <!--insert sql：保存一个汽车信息-->
+    <insert id="insertCar">
+        insert into t_car
+            (car_num,brand,guide_price,produce_time,car_type)
+        values
+            (#{carNum},#{brand},#{guidePrice},#{produceTime},#{carType})
+    </insert>
+
+    <delete id="delCar">
+        delete from t_car where id=#{id}
+    </delete>
+
+    <update id="updateCar">
+        update t_car
+        set
+            car_num=#{carNum},
+            brand=#{brand},guide_price=#{guidePrice},
+            produce_time=#{produceTime},car_type=#{carType}
+        where id=#{id}
+    </update>
+
+    <select id="selectOne" resultType="org.liu.batis.pojo.Car">
+        select id,car_num as carNum,brand,guide_price as guidePrice,produce_time as produceTime,car_type as carType
+        from t_car
+        where id = #{id};
+    </select>
+
+    <select id="selectMany" resultType="org.liu.batis.pojo.Car">
+        select id,car_num as carNum,brand,guide_price as guidePrice,produce_time as produceTime,car_type as carType
+        from t_car
+    </select>
+</mapper>
